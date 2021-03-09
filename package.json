@@ -1,0 +1,31 @@
+{
+  "name": "vaccine-bot",
+  "version": "1.0.0",
+  "description": "Bot for scanning the NYC site on a chron for vaccine availability",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeswright49/vaccine-bot.git"
+  },
+  "author": "mikeswright49",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikeswright49/vaccine-bot/issues"
+  },
+  "homepage": "https://github.com/mikeswright49/vaccine-bot#readme",
+  "dependencies": {
+    "@types/twilio": "^2.11.0",
+    "node-fetch": "^2.6.1",
+    "testcafe": "^1.12.0",
+    "ts-node": "^9.1.1",
+    "twilio": "^3.57.0",
+    "typescript": "^4.2.3"
+  },
+  "devDependencies": {
+    "firebase": "^8.2.10"
+  }
+}

@@ -1,0 +1,41 @@
+# PR CI
+# This configuration is used to run through the CI steps of a given project
+name: Text Message Cron
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: yarn-cache
+        uses: actions/cache@v1
+        id: yarn-cache
+        env:
+          cache-name: npm-cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 15.10.0
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: |
+          yarn install
+
+      - name: Run the task
+        run: |
+          node dist/index.js
+        env:
+          TWILIO_AUTH: ${{ secrets.TWILIO_AUTH }}
+          TWILIO_SID: ${{ secrets.TWILIO_SID }}
+          TWILIO_NUMBER: ${{ secrets.TWILIO_NUMBER }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
