@@ -19,10 +19,10 @@ test("Checking page status", async t => {
   await t.expect(rows.exists).ok();
   if (await rows.sibling().withExactText("Appointments Available").exists) {
     console.log("Appointments found");
-    await t.expect(sendMessage(user.phone_number)).ok();
+    const notified = await sendMessage(user.phone_number);
     UserStore.updateUser({
       ...user,
-      notified: true,
+      notified,
       last_notified: new Date().toISOString()
     });
   } else {

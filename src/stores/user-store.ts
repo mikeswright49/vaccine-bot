@@ -31,5 +31,7 @@ export class UserStore {
     return (await UserStore.database.ref(`users/${userId}`).get()).val();
   }
 
-  public static async updateUser(user: User): Promise<void> {}
+  public static async updateUser(user: User): Promise<void> {
+    await UserStore.database.ref(`users/${user.id}`).update(user);
+  }
 }
