@@ -3,7 +3,7 @@
 name: Text Message Cron
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/25 * * * *"
 
 jobs:
   validate:

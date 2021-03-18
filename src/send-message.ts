@@ -5,7 +5,8 @@ export async function sendMessage(phoneNumber: string) {
   try {
     const twilioClient = twilio(TWILIO_SID, TWILIO_AUTH);
     const response = await twilioClient.messages.create({
-      body: "new vaccines available",
+      body:
+        "new vaccines available - sign up at https://am-i-eligible.covid19vaccine.health.ny.gov/",
       from: TWILIO_NUMBER,
       to: phoneNumber
     });
